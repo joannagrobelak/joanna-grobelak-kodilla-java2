@@ -1,6 +1,7 @@
 package com.kodilla.testing.collection;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,30 +9,40 @@ import java.util.ArrayList;
 
 public class CollectionTestSuite {
 
+    private static int counter = 0;
+
     @Before
     public void before() {
-        System.out.println("Test Case: start");
+        counter++;
+        System.out.println("Test Case " + counter + ": start");
     }
 
     @After
     public void after() {
-        System.out.println("Test Case: end");
+        System.out.println("Test Case " + counter + ": end");
     }
 
     @Test
     public void testOddNumbersExterminatorEmptyList() {
+
+        //given
+
         OddNumbersExterminator testExt1 = new OddNumbersExterminator();
         ArrayList<Integer> numbers = new ArrayList<Integer>();
+
+        //when
+
         ArrayList<Integer> testCaseEmptyList = testExt1.exterminate(numbers);
-        if(testCaseEmptyList.size() == 0) {
-            System.out.println("Test \"testOddNumbersExterminatorEmptyList\" ok");
-        } else {
-            System.out.println("Test \"testOddNumbersExterminatorEmptyList\" failed!");
-        }
+
+        //then
+
+        Assert.assertEquals(0, testCaseEmptyList.size());
     }
 
     @Test
     public void testOddNumbersExterminatorNormalList() {
+
+        //given
 
         OddNumbersExterminator testExt2 = new OddNumbersExterminator();
 
@@ -40,13 +51,14 @@ public class CollectionTestSuite {
             numbers.add(i);
         }
 
+        //when
+
         ArrayList<Integer> testCaseNormalList = testExt2.exterminate(numbers);
+
+        //then
+
         for(Integer testValue : testCaseNormalList) {
-            if(testValue % 2 != 0) {
-                System.out.println("Test \"testOddNumbersExterminatorNormalList\" failed!");
-            } else {
-                System.out.println("Tested value: ok");
-            }
+            Assert.assertEquals(testValue % 2, 0);
         }
 
     }

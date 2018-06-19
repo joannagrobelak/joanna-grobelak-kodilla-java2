@@ -13,7 +13,6 @@ class OddNumbersExterminator {
                 evenNumbers.add(numbers.get(i));
             }
         }
-        System.out.println("even elements: " + evenNumbers);
         return evenNumbers;
 
     }

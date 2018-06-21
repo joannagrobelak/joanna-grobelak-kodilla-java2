@@ -1,5 +1,6 @@
 package com.kodilla.testing.forum;
 
+
         import java.util.Objects;
 
         public class ForumPost {
@@ -34,4 +35,5 @@ package com.kodilla.testing.forum;
 
                         return Objects.hash(postBody, author);
             }
+
 }

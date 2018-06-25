@@ -20,6 +20,14 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
 
+        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        System.out.println("\n\"Decorating\" text with lambdas: ");
+        poemBeautifier.beautify("ugly text", text -> text.toUpperCase());
+        poemBeautifier.beautify("def...xyz", text -> "ABC" + text + "ABC");
+        poemBeautifier.beautify("Ala has a cat", text -> text.replace("t", "r"));
+        poemBeautifier.beautify("one million dollars in debt", text -> text.substring(0, 19));
+
+
     }
 
 }

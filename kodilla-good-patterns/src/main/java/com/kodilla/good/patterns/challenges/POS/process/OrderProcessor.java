@@ -1,4 +1,8 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.POS.process;
+
+import com.kodilla.good.patterns.challenges.POS.infoService.InfoService;
+import com.kodilla.good.patterns.challenges.POS.orderService.OrderService;
+import com.kodilla.good.patterns.challenges.POS.repository.OrderRepository;
 
 public class OrderProcessor {
 

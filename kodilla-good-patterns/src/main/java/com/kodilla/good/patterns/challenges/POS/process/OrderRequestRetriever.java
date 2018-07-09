@@ -1,4 +1,8 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.POS.process;
+
+import com.kodilla.good.patterns.challenges.POS.process.OrderRequest;
+import com.kodilla.good.patterns.challenges.POS.product.Product;
+import com.kodilla.good.patterns.challenges.POS.user.User;
 
 import java.time.LocalDateTime;
 

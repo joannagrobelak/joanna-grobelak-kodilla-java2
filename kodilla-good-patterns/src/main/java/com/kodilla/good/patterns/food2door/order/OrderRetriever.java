@@ -1,6 +1,9 @@
 package com.kodilla.good.patterns.food2door.order;
 
+<<<<<<< Updated upstream
 import com.kodilla.good.patterns.food2door.order.Order;
+=======
+>>>>>>> Stashed changes
 import com.kodilla.good.patterns.food2door.product.Product;
 import com.kodilla.good.patterns.food2door.supplier.Supplier;
 

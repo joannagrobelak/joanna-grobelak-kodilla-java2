@@ -7,4 +7,8 @@ public class HealthyShop implements OrderProcessor {
         // implementation A
         return false;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

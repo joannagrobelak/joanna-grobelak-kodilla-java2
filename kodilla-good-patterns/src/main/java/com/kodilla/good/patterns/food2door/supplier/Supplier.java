@@ -11,4 +11,8 @@ public class Supplier {
     public String getSupplierName() {
         return supplierName;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

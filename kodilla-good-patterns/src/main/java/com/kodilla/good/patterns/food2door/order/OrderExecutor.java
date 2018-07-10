@@ -12,18 +12,7 @@ public class OrderExecutor {
 
     public OrderDto execute(final Order order) {
         boolean isOrdered = orderProcessor.process();
-<<<<<<< Updated upstream
-        if(isOrdered) {
-            return new OrderDto(order.getSupplier(), true);
-        } else {
-            return new OrderDto(order.getSupplier(), false);
-        }
-    }
-}
-=======
         return new OrderDto(order.getSupplier(), isOrdered);
     }
 
 }
-
->>>>>>> Stashed changes

@@ -49,12 +49,12 @@ public class FlightSearch {
                 .filter(flights -> flights.getArrivalAirport().equals(transferAirport))
                 .findAny();
 
-        Optional<Flight> fromTranserToArrival = availableFlights.getListOfFlights().stream()
+        Optional<Flight> fromTransferToArrival = availableFlights.getListOfFlights().stream()
                 .filter(flights -> flights.getDepartureAirport().equals(transferAirport))
                 .filter(flights -> flights.getArrivalAirport().equals(arrivalAirport))
                 .findAny();
 
-        if(fromDepartureToTransfer.isPresent() && fromTranserToArrival.isPresent()) {
+        if(fromDepartureToTransfer.isPresent() && fromTransferToArrival.isPresent()) {
             System.out.println("\nChosen connecting flight " + departureAirport + " - " + transferAirport + " - " +
             arrivalAirport + " is available.");
         } else {

@@ -1,9 +1,12 @@
 package com.kodilla.good.patterns.flights;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FlightSearch {
+
+    private static final int NO_FLIGHTS = 0;
 
     AvailableFlights availableFlights = new AvailableFlights();
 
@@ -13,7 +16,7 @@ public class FlightSearch {
                 .filter(flights -> flights.getDepartureAirport().equals(departureAirport))
                 .collect(Collectors.toList());
 
-        if(flightsFromChosenAirport.size() > 0) {
+        if(flightsFromChosenAirport.size() > NO_FLIGHTS) {
             System.out.println("Available direct flights from " + departureAirport + ": \n");
             flightsFromChosenAirport.stream()
                     .forEach(System.out::println);
@@ -29,7 +32,7 @@ public class FlightSearch {
                 .filter(flights -> flights.getArrivalAirport().equals(arrivalAirport))
                 .collect(Collectors.toList());
 
-        if(flightsToChosenAirport.size() > 0) {
+        if(flightsToChosenAirport.size() > NO_FLIGHTS) {
             System.out.println("\nAvailable direct flights to " + arrivalAirport + ": \n");
             flightsToChosenAirport.stream()
                     .forEach(System.out::println);
@@ -41,18 +44,17 @@ public class FlightSearch {
 
     public void findConnectingFlight(String departureAirport, String transferAirport, String arrivalAirport) {
 
-        List<Flight> flightsFromChosenAirportToChosenTransferAirport = availableFlights.getListOfFlights().stream()
+        Optional<Flight> fromDepartureToTransfer = availableFlights.getListOfFlights().stream()
                 .filter(flights -> flights.getDepartureAirport().equals(departureAirport))
                 .filter(flights -> flights.getArrivalAirport().equals(transferAirport))
-                .collect(Collectors.toList());
+                .findAny();
 
-        List<Flight> flightsFromChosenTranserAirportToFinalDestionation = availableFlights.getListOfFlights().stream()
+        Optional<Flight> fromTranserToArrival = availableFlights.getListOfFlights().stream()
                 .filter(flights -> flights.getDepartureAirport().equals(transferAirport))
                 .filter(flights -> flights.getArrivalAirport().equals(arrivalAirport))
-                .collect(Collectors.toList());
+                .findAny();
 
-        if(flightsFromChosenAirportToChosenTransferAirport.size() == 1
-                && flightsFromChosenTranserAirportToFinalDestionation.size() == 1) {
+        if(fromDepartureToTransfer.isPresent() && fromTranserToArrival.isPresent()) {
             System.out.println("\nChosen connecting flight " + departureAirport + " - " + transferAirport + " - " +
             arrivalAirport + " is available.");
         } else {

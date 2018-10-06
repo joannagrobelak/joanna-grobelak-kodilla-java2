@@ -56,7 +56,7 @@ public class SearchingFacadeTestSuite {
         companyDao.save(greyMatter);
 
         //When
-        List<Company> resultCompanies = searchingFacade.searchingForCompanies("%Ma%");
+        List<Company> resultCompanies = searchingFacade.searchingForCompanies("Ma");
 
         //Then
         Assert.assertEquals(3, resultCompanies.size());
@@ -90,7 +90,7 @@ public class SearchingFacadeTestSuite {
         companyDao.save(greyMatter);
 
         //When
-        List<Employee> resultEmployees = searchingFacade.searchingForEmployees("%sky%");
+        List<Employee> resultEmployees = searchingFacade.searchingForEmployees("sky");
 
         //Then
         Assert.assertEquals(1, resultEmployees.size());

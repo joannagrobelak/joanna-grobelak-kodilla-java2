@@ -10,6 +10,13 @@ import java.util.List;
     query = "FROM Employee WHERE lastname > :LASTNAME"
 )
 
+@NamedNativeQuery(
+        name = "Employee.retrieveEmployeesWithLastnameContainingGivenLetters",
+        query = "SELECT * FROM EMPLOYEES " +
+                "WHERE LASTNAME LIKE CONCAT ('%', :PART_OF_LASTNAME, '%')",
+        resultClass = Employee.class
+)
+
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {

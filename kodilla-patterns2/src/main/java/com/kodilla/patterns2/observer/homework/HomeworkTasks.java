@@ -3,13 +3,13 @@ package com.kodilla.patterns2.observer.homework;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Homework implements Observable {
+public class HomeworkTasks implements Observable {
 
     private final List<Observer> observers;
     private final List<String> tasks;
     private final String studentName;
 
-    public Homework(String studentName) {
+    public HomeworkTasks(String studentName) {
         observers = new ArrayList<>();
         tasks = new ArrayList<>();
         this.studentName = studentName;

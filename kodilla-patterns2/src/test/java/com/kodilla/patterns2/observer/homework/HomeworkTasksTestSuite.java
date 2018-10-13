@@ -7,44 +7,62 @@ import static org.junit.Assert.assertEquals;
 public class HomeworkTasksTestSuite {
 
     @Test
-    public void testUpdate() {
+    public void testUpdateBasicCase() {
         //Given
         HomeworkTasks hannasHomework = new HomeworkTasks("Hanna");
         HomeworkTasks janeksHomework = new HomeworkTasks("Janek");
-        HomeworkTasks zuziasHomework = new HomeworkTasks("Zuzia");
-        HomeworkTasks łukaszsHomework = new HomeworkTasks("Łukasz");
-        HomeworkTasks reginasHomework = new HomeworkTasks("Regina");
         HomeworkTasks mariuszsHomework = new HomeworkTasks("Mariusz");
         Mentor mentorKrzysztof = new Mentor("Krzysztof");
         Mentor mentorWładysław = new Mentor("Władysław");
         Mentor mentorEdward = new Mentor("Edward");
         hannasHomework.registerObserver(mentorKrzysztof);
         janeksHomework.registerObserver(mentorKrzysztof);
-        janeksHomework.removeObserver(mentorEdward);
-        zuziasHomework.registerObserver(mentorKrzysztof);
-        łukaszsHomework.registerObserver(mentorKrzysztof);
-        reginasHomework.registerObserver(mentorWładysław);
         mariuszsHomework.registerObserver(mentorWładysław);
-        mariuszsHomework.registerObserver(mentorKrzysztof);
         //When
         hannasHomework.addTask("task 1");
         hannasHomework.addTask("task 2");
         hannasHomework.addTask("task 3");
         janeksHomework.addTask("task 1");
-        zuziasHomework.addTask("task 1");
-        łukaszsHomework.addTask("task 1");
-        łukaszsHomework.addTask("task 2");
-        reginasHomework.addTask("task 1");
-        reginasHomework.addTask("task 2");
-        reginasHomework.addTask("task 3");
-        reginasHomework.addTask("task 4");
         mariuszsHomework.addTask("task 1");
         mariuszsHomework.addTask("task 2");
-        janeksHomework.removeObserver(mentorEdward);
-        janeksHomework.addTask("task2");
         //Then
-        assertEquals(10, mentorKrzysztof.getUpdateCount());
-        assertEquals(6, mentorWładysław.getUpdateCount());
+        assertEquals(4, mentorKrzysztof.getUpdateCount());
+        assertEquals(2, mentorWładysław.getUpdateCount());
+        assertEquals(0, mentorEdward.getUpdateCount());
+
+    }
+
+    @Test
+    public void testUpdateCaseTwoMentorsOneStudent() {
+        //Given
+        HomeworkTasks janeksHomework = new HomeworkTasks("Janek");
+        Mentor mentorKrzysztof = new Mentor("Krzysztof");
+        Mentor mentorEdward = new Mentor("Edward");
+        janeksHomework.registerObserver(mentorKrzysztof);
+        janeksHomework.registerObserver(mentorEdward);
+        //When
+        janeksHomework.addTask("task 1");
+        janeksHomework.addTask("task 2");
+        //Then
+        assertEquals(2, mentorKrzysztof.getUpdateCount());
+        assertEquals(2, mentorEdward.getUpdateCount());
+
+    }
+
+    @Test
+    public void testUpdateCaseMentorRemoved() {
+        //Given
+        HomeworkTasks janeksHomework = new HomeworkTasks("Janek");
+        Mentor mentorKrzysztof = new Mentor("Krzysztof");
+        Mentor mentorEdward = new Mentor("Edward");
+        janeksHomework.registerObserver(mentorKrzysztof);
+        janeksHomework.removeObserver(mentorEdward);
+        //When
+        janeksHomework.addTask("task 1");
+        janeksHomework.removeObserver(mentorEdward);
+        janeksHomework.addTask("task 2");
+        //Then
+        assertEquals(2, mentorKrzysztof.getUpdateCount());
         assertEquals(0, mentorEdward.getUpdateCount());
 
     }
